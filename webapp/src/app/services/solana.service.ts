@@ -13,14 +13,22 @@ declare let window: any;
 export class SolanaService {
   provider: any;
   walletConnected: boolean = false;
+  publicKey!: PublicKey;
+  connection: Connection;
 
   constructor() {
     this.getProvider();
     this.isLoggedIn();
+    this.connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
   }
 
   isLoggedIn() {
     console.log(this.walletConnected);
+  }
+
+  async getBalance() {
+    console.log(this.publicKey);
+    return await this.connection.getBalance(this.publicKey);
   }
 
   getProvider() {
@@ -49,6 +57,10 @@ export class SolanaService {
         const data = await userWallet.connect();
         this.walletConnected = true;
         console.log(data);
+        this.publicKey = data.publicKey;
+        const bal = await this.getBalance();
+        console.log(bal);
+        // this.publicKey = data.publicKey.toString();
         return data.publicKey;
         // await userWallet.on('connect', async () => {
         //   this.userWalletProvider = await userWallet.publicKey;
@@ -68,12 +80,15 @@ export class SolanaService {
   async airDropHelper() {
     try {
       // setLoading(true);
-      const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
-      const fromAirDropSignature = await connection.requestAirdrop(
+
+      const fromAirDropSignature = await this.connection.requestAirdrop(
         new PublicKey(this.provider.publicKey),
         LAMPORTS_PER_SOL
       );
-      await connection.confirmTransaction(fromAirDropSignature, 'confirmed');
+      await this.connection.confirmTransaction(
+        fromAirDropSignature,
+        'confirmed'
+      );
 
       console.log(
         `1 SOL airdropped to your wallet ${this.provider.publicKey.toString()} successfully`

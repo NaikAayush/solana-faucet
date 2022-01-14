@@ -12,12 +12,28 @@ export class AppComponent implements OnInit {
   userWalletProvider: any;
   walletConnected: boolean = false;
   flag: boolean = false;
+  darkMode: boolean = false;
+  colorScheme: string = '';
 
   constructor(public solanaService: SolanaService) {}
 
+  setTheme() {
+    if (!localStorage.getItem('darkMode')) {
+      localStorage.setItem('darkMode', 'false');
+    }
+    if (localStorage.getItem('darkMode') == 'false') {
+      this.colorScheme = '';
+    } else if (localStorage.getItem('darkMode') == 'true') {
+      this.colorScheme = 'dark';
+    }
+  }
+
   async ngOnInit() {
+    this.setTheme();
     // this.userWalletProvider = await this.walletConnectionHelper();
     this.solanaService.isLoggedIn();
+    const bal = await this.solanaService.getBalance();
+    console.log(bal);
   }
 
   async getProvider() {

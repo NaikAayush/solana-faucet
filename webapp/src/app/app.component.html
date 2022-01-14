@@ -1,10 +1,17 @@
 <!-- <h2 *ngIf="flag">Public Key: {{ userWalletProvider }}</h2>
 <button *ngIf="flag">Disconnect Wallet</button>
 <button (click)="walletConnectionHelper()">Connect Wallet</button> -->
-<app-wallet-modal *ngIf="!solanaService.walletConnected"></app-wallet-modal>
-<app-navbar></app-navbar>
-<div class="dark">
+<!-- <app-wallet-modal *ngIf="!solanaService.walletConnected"></app-wallet-modal> -->
+
+<!-- </div> -->
+<main [ngClass]="colorScheme">
+    <app-navbar></app-navbar>
+    <!-- <div class="dark"> -->
     <div class="bg-white dark:bg-slate-900 w-screen h-screen">
-        <h1>hi</h1>
+        <div class="h-24 w-screen"></div>
+        <div class="flex flex-col">
+            <app-account-header></app-account-header>
+            <button>Get Test SOL</button>
+        </div>
     </div>
-</div>
+</main>
