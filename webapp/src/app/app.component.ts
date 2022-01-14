@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SolanaService } from './services/solana.service';
 declare let window: any;
 
 @Component({
@@ -12,8 +13,11 @@ export class AppComponent implements OnInit {
   walletConnected: boolean = false;
   flag: boolean = false;
 
+  constructor(public solanaService: SolanaService) {}
+
   async ngOnInit() {
-    this.userWalletProvider = await this.walletConnectionHelper();
+    // this.userWalletProvider = await this.walletConnectionHelper();
+    this.solanaService.isLoggedIn();
   }
 
   async getProvider() {
@@ -23,29 +27,6 @@ export class AppComponent implements OnInit {
         return provider;
       } else {
         window.open('https://www.phantom.app/', '_blank');
-      }
-    }
-  }
-
-  async walletConnectionHelper() {
-    console.log(this.flag);
-    if (this.walletConnected) {
-      //Disconnect Wallet
-      console.log(this.flag);
-      //  setProvider();
-      //  setWalletConnected(false);
-    } else {
-      const userWallet = await this.getProvider();
-      if (userWallet) {
-        this.flag = true;
-        const data = await userWallet.connect();
-        return data.publicKey;
-        // await userWallet.on('connect', async () => {
-        //   this.userWalletProvider = await userWallet.publicKey;
-        //   this.walletConnected = true;
-        //   return true;
-        // });
-        // await userWallet.on('connect');
       }
     }
   }

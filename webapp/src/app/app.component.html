@@ -1,3 +1,10 @@
-<h2 *ngIf="flag">Public Key: {{ userWalletProvider }}</h2>
+<!-- <h2 *ngIf="flag">Public Key: {{ userWalletProvider }}</h2>
 <button *ngIf="flag">Disconnect Wallet</button>
-<button (click)="walletConnectionHelper()">Connect Wallet</button>
+<button (click)="walletConnectionHelper()">Connect Wallet</button> -->
+<app-wallet-modal *ngIf="!solanaService.walletConnected"></app-wallet-modal>
+<app-navbar></app-navbar>
+<div class="dark">
+    <div class="bg-white dark:bg-slate-900 w-screen h-screen">
+        <h1>hi</h1>
+    </div>
+</div>
