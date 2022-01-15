@@ -2,11 +2,11 @@
     <app-wallet-modal *ngIf="!solanaService.walletConnected"></app-wallet-modal>
     <div>
         <app-navbar></app-navbar>
-        <div class="bg-gray-200 dark:bg-slate-900 w-screen h-screen">
+        <div class="flex flex-col  items-center bg-gray-200 dark:bg-slate-900 w-screen h-screen">
             <div class="h-24 w-screen"></div>
-            <div *ngIf="solanaService.walletConnected" class="flex flex-col">
+            <div *ngIf="solanaService.walletConnected" class="flex flex-col justify-center w-full max-w-7xl">
                 <app-account-header class="p-4"></app-account-header>
-                <button>Get Test SOL</button>
+                <!-- <button>Get Test SOL</button> -->
             </div>
         </div>
     </div>

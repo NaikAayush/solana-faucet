@@ -58,8 +58,6 @@ export class SolanaService {
         this.walletConnected = true;
         console.log(data);
         this.publicKey = data.publicKey;
-        const bal = await this.getBalance();
-        console.log(bal);
         // this.publicKey = data.publicKey.toString();
         return data.publicKey;
         // await userWallet.on('connect', async () => {
