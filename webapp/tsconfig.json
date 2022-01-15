@@ -27,7 +27,9 @@
       "https": ["./node_modules/https-browserify"],
       "os": ["./node_modules/os-browserify"],
       "process": ["./node_modules/process/browser"]
-    }
+    },
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

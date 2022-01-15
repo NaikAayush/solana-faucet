@@ -6,6 +6,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { WalletModalComponent } from './components/wallet-modal/wallet-modal.component';
 import { AccountHeaderComponent } from './components/account-header/account-header.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { TokenModalComponent } from './components/token-modal/token-modal.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     WalletModalComponent,
     AccountHeaderComponent,
     LoaderComponent,
+    TokenModalComponent,
+    ToastComponent,
   ],
   imports: [BrowserModule],
   providers: [],
