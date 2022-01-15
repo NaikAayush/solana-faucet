@@ -19,6 +19,8 @@ export class SolanaService {
   constructor() {
     this.getProvider();
     this.isLoggedIn();
+    // TODO REMOVE
+    this.connectWallet();
     this.connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
   }
 
@@ -75,10 +77,8 @@ export class SolanaService {
     window.location.reload();
   }
 
-  async airDropHelper() {
+  public async getSolana() {
     try {
-      // setLoading(true);
-
       const fromAirDropSignature = await this.connection.requestAirdrop(
         new PublicKey(this.provider.publicKey),
         LAMPORTS_PER_SOL
@@ -91,10 +91,8 @@ export class SolanaService {
       console.log(
         `1 SOL airdropped to your wallet ${this.provider.publicKey.toString()} successfully`
       );
-      // setLoading(false);
     } catch (err) {
       console.log(err);
-      // setLoading(false);
     }
   }
 
